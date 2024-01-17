@@ -19,10 +19,14 @@ func (estoque* Estoque) CadastraItens ( novos_itens [] item.Item, usuario usuari
 
 	if(usuario.Perfil == "admin"){
 
+		fmt.Println("\n_________________________________ \n");
+
 		for _, novo_item := range novos_itens{
 			fmt.Println(novo_item.Nome , " adicionado ao estoque");
 			estoque.itens = append(estoque.itens, novo_item);
 		} 
+
+		fmt.Println("_________________________________ \n\n");
 
 	}else{
 		fmt.Println("Você não tem permissão para cadastrar um item");
@@ -31,6 +35,9 @@ func (estoque* Estoque) CadastraItens ( novos_itens [] item.Item, usuario usuari
 
 func (estoque* Estoque) ExibirEstoque( usuario usuario.Usuario){
 
+	fmt.Println("\n_________________________________ \n");
+	fmt.Println("     ESTOQUE:         \n");
+	
 	if(usuario.Perfil == "admin"){
 
 		for _, item := range estoque.itens{
@@ -43,6 +50,8 @@ func (estoque* Estoque) ExibirEstoque( usuario usuario.Usuario){
 			fmt.Println(item.Nome , ". Preço: ", item.Preco);
 		} 
 	
-	}	
+	}
+	
+	fmt.Println("_________________________________ \n\n");
 
 }

@@ -1,8 +1,8 @@
 package item;
 
 import(
-	"fmt";
-	"loja_online/usuario";
+	//"fmt";
+	//"loja_online/usuario";
 )
 
 type Item struct{
@@ -13,7 +13,7 @@ type Item struct{
 
 };
 
-
+/*
 func (item* Item) ExibirCodigo(usuario usuario.Usuario){
 
 	if(usuario.Perfil == "admin"){
@@ -21,4 +21,4 @@ func (item* Item) ExibirCodigo(usuario usuario.Usuario){
 	}else{
 		fmt.Println("Você não tem permissão para visualizar códigos de itens!");
 	}	
-}
+}*/

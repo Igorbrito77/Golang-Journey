@@ -1,7 +1,7 @@
 package main;
 
 import(
-	"fmt";
+	//"fmt";
 	"loja_online/usuario";
 	"loja_online/item";
 	"loja_online/estoque";
@@ -24,8 +24,7 @@ func cadastarItensIniciais(user usuario.Usuario) estoque.Estoque{
 }
 
 func main(){
-	
-	
+
 	user := usuario.Usuario{Nome: "User",  Perfil: "admin"};
 
 	estoque := cadastarItensIniciais(user);
@@ -36,6 +35,5 @@ func main(){
 	igor.Perfil = "admin";
 
 	estoque.ExibirEstoque(*igor);
-
 
 }
