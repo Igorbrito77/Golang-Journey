@@ -16,7 +16,7 @@ type ContaCorrente struct{
 };
 
 
-func (c* ContaCorrente) sacar(valorSaque float64) string{
+func (c* ContaCorrente) Sacar(valorSaque float64) string{
 
 	saquePossivel := valorSaque > 0 && c.Saldo >= valorSaque;
 
@@ -28,7 +28,7 @@ func (c* ContaCorrente) sacar(valorSaque float64) string{
 	}
 }
 
-func (c* ContaCorrente) depositar(valorDeposito float64) (string, float64){
+func (c* ContaCorrente) Depositar(valorDeposito float64) (string, float64){
 
 	depositoPossivel := valorDeposito > 0;
 
@@ -49,7 +49,7 @@ func (c* ContaCorrente ) Transferir(valorTransferencia float64, contaDestino* Co
 	if(transferenciaPossivel){
 		contaDestino.Saldo += valorTransferencia;
 		c.Saldo -= valorTransferencia;
-		return "Transferência no valor de  "+ strconv.FormatFloat(valorTransferencia, 'f', -1, 64)+ " de " + c.Titular + " para o "+ contaDestino.Titular+  " feita com sucesso", c.Saldo;
+		return "Transferência no valor de  "+ strconv.FormatFloat(valorTransferencia, 'f', -1, 64)+ " de " + c.Titular.Nome + " para o "+ contaDestino.Titular.Nome+  " feita com sucesso", c.Saldo;
 	} else{
 		return "Não foi possível efetuar a transição", c.Saldo;
 	}

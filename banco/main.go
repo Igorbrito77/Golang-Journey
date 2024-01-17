@@ -3,6 +3,7 @@ package main;
 import (
 	"fmt";
 	"banco/contas";
+	"banco/clientes";
 );
 
 
@@ -17,7 +18,10 @@ func main(){
 	contaJorel.Titular = "Jorel";
 	contaJorel.Saldo = 1000;*/
 
-	var contaLurdes = contas.ContaCorrente{Titular: "Lurdes", Saldo: 3500};
+	contaLurdes := contas.ContaCorrente{Titular: clientes.Titular{ 
+														Nome: "Lurdes",
+														Cpf: "123.456.789-12",
+														Profissao: "Bancária" }, Saldo: 3500};
 
 
 
@@ -25,7 +29,7 @@ func main(){
 	fmt.Println(contaLurdes);
 
 
-	fmt.Println(contaLurdes.sacar(-14));
+	fmt.Println(contaLurdes.Sacar(200));
 
 	//fmt.Println(contaJorel.depositar(-400));
 
