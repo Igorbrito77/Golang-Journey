@@ -20,14 +20,28 @@ type Usuario struct{
 	ItensEscolhidos [] ItemUsuario;
 };
 
+func (usuario* Usuario) AdicionarItemCarrinho(item_escolhido item.Item, quantidade int){
+
+	novo_item_escolhido := ItemUsuario{ Item: item_escolhido, Quantidade: quantidade};
+
+	usuario.ItensEscolhidos = append(usuario.ItensEscolhidos, novo_item_escolhido);
+	
+}
+
 func (usuario* Usuario) ExibirCarrinho(){
 
-	for _, item_escolhido := range usuario.ItensEscolhidos{
+	fmt.Println("\n_________________________________ \n");
+	fmt.Println(" **** CARRINHO DE COMPRAS DO ", usuario.Nome, " ****    \n");
 
-		fmt.Println(" **** CARRINHO DE COMPRAS DO ", usuario.Nome, " ****    \n");
-
-		fmt.Println("* ", item_escolhido.Item.Nome, " . Quantidade: ", item_escolhido.Quantidade, " . Preço: ", item_escolhido.Item.Preco);
-
+	if(len(usuario.ItensEscolhidos) == 0 ){
+		fmt.Println(" ... Carrinho de compras vazio ...")
 	}
 
+	for _, item_escolhido := range usuario.ItensEscolhidos{
+		
+		fmt.Println("* ", item_escolhido.Item.Nome, " . Preço: ", item_escolhido.Item.Preco, " . Quantidade: ", item_escolhido.Quantidade);
+		
+	}
+
+	fmt.Println("_________________________________ \n\n");
 }

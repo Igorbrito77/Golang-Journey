@@ -35,6 +35,7 @@ func (estoque* Estoque) CadastraItens ( novos_itens [] item.Item, usuario usuari
 
 func (estoque* Estoque) ExibirEstoque( usuario usuario.Usuario){
 
+	// depois listar apenas os produtos em estoque com quantidade maior que 0
 	fmt.Println("\n_________________________________ \n");
 	fmt.Println("     ESTOQUE:         \n");
 	

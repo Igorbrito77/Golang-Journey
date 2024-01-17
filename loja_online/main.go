@@ -36,4 +36,10 @@ func main(){
 
 	estoque.ExibirEstoque(*igor);
 
+	cafe:= item.Item{Nome: "Café", Preco: 4.50, Codigo: 1};
+
+	igor.AdicionarItemCarrinho(cafe, 2);
+
+	igor.ExibirCarrinho();
+
 }
