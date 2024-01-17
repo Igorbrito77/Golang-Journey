@@ -21,16 +21,18 @@ func main(){
 
 	var contaJorel *contas.ContaCorrente;
 	contaJorel = new(contas.ContaCorrente);
-	contaJorel.Saldo = 1000;
 	contaJorel.Titular = *titularJorel;
+
+	contaJorel.Depositar(1000);
 	
 
 	contaLurdes := contas.ContaCorrente{Titular: clientes.Titular{ 
 														Nome: "Lurdes",
 														Cpf: "123.456.789-12",
-														Profissao: "Bancária" }, Saldo: 3500};
+														Profissao: "Bancária" }};
 
 
+	contaLurdes.Depositar(3500);
 
 	fmt.Println(*contaJorel);
 	fmt.Println(contaLurdes);
@@ -46,6 +48,12 @@ func main(){
 	//fmt.Println(*contaJorel);
 	fmt.Println(contaLurdes);
 
+
+
+	contaExemplo := contas.ContaCorrente{};
+	contaExemplo.Depositar(241);
+
+	contaExemplo.ExibirSaldo()
 
 }
 
