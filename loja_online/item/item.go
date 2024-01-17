@@ -9,7 +9,7 @@ type Item struct{
 
 	Nome string;
 	Preco float64;
-	codigo int;
+	Codigo int;
 
 };
 
@@ -17,18 +17,8 @@ type Item struct{
 func (item* Item) ExibirCodigo(usuario usuario.Usuario){
 
 	if(usuario.Perfil == "admin"){
-		fmt.Println("Código do produto ", item.Nome, ": ", item.codigo)
+		fmt.Println("Código do produto ", item.Nome, ": ", item.Codigo)
 	}else{
 		fmt.Println("Você não tem permissão para visualizar códigos de itens!");
-	}	
-}
-
-func (item* Item) CadastrarCodigo(usuario usuario.Usuario, codigo int){
-
-	if(usuario.Perfil == "admin"){
-		item.codigo = codigo
-		fmt.Println("Código do produto cadastrado")
-	}else{
-		fmt.Println("Você não tem permissão para cadastrar códigos de itens!");
 	}	
 }
