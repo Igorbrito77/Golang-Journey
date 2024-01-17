@@ -11,12 +11,19 @@ import (
 
 func main(){
 
-	/*var contaJorel *contas.ContaCorrente;
 
+	var titularJorel *clientes.Titular;
+	titularJorel = new(clientes.Titular);
+
+	titularJorel.Nome = "Jorel";
+	titularJorel.Cpf = "147.258.369-14";
+	titularJorel.Profissao = "Dev";
+
+	var contaJorel *contas.ContaCorrente;
 	contaJorel = new(contas.ContaCorrente);
-
-	contaJorel.Titular = "Jorel";
-	contaJorel.Saldo = 1000;*/
+	contaJorel.Saldo = 1000;
+	contaJorel.Titular = *titularJorel;
+	
 
 	contaLurdes := contas.ContaCorrente{Titular: clientes.Titular{ 
 														Nome: "Lurdes",
@@ -25,7 +32,7 @@ func main(){
 
 
 
-//	fmt.Println(*contaJorel);
+	fmt.Println(*contaJorel);
 	fmt.Println(contaLurdes);
 
 
