@@ -3,15 +3,24 @@ package main;
 import (
 	"fmt";
 	"banco/contas";
-	"banco/clientes";
+	//"banco/clientes";
 );
 
 
+func pagarBoleto(conta verificarConta, valorBoleto float64){
+
+	conta.Sacar(valorBoleto);
+}
+
+type verificarConta interface {
+
+	Sacar(valor float64) string;
+}
 
 
 func main(){
 
-
+/*
 	var titularJorel *clientes.Titular;
 	titularJorel = new(clientes.Titular);
 
@@ -53,7 +62,34 @@ func main(){
 	contaExemplo := contas.ContaCorrente{};
 	contaExemplo.Depositar(241);
 
-	contaExemplo.ExibirSaldo()
+	contaExemplo.ExibirSaldo()*/
+	
+	
+
+
+	minhaCorrente := contas.ContaCorrente{};
+
+	minhaCorrente.Depositar(1200.25);
+
+	minhaPoupanca := contas.ContaPoupanca{};
+
+	minhaPoupanca.Depositar(640.50);
+
+	//fmt.Println("minhaCorrente : ", minhaCorrente)
+
+	fmt.Println("minhaPoupanca : ", minhaPoupanca)
+
+	pagarBoleto(&minhaPoupanca, 200);
+
+	fmt.Println("minhaPoupanca : ", minhaPoupanca)
+
+
+	fmt.Println("minhaCorrente : ", minhaCorrente)
+
+	pagarBoleto(&minhaCorrente, 300.13);
+
+	fmt.Println("minhaCorrente : ", minhaCorrente)
+
 
 }
 
