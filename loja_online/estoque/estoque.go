@@ -11,7 +11,7 @@ import(
 type ItemEstoque struct{
 
 	Item item.Item;
-	Unidade int;
+	UnidadesDisponiveis int;
 };
 
 
@@ -48,14 +48,14 @@ func (estoque* Estoque) ExibirEstoque( usuario usuario.Usuario){
 	
 	if(usuario.Perfil == "admin"){
 
-		for _, ItemEstoque := range estoque.ItensEstoque{
-			fmt.Println(ItemEstoque.Item.Id, ". ",  ItemEstoque.Item.Nome , ". Preço: ", ItemEstoque.Item.Preco, ". Código: ", ItemEstoque.Item.Codigo);
+		for _, itemEstoque := range estoque.ItensEstoque{
+			fmt.Println(itemEstoque.Item.Id, ". ",  itemEstoque.Item.Nome , ". Preço: ", itemEstoque.Item.Preco, ". Código: ", itemEstoque.Item.Codigo, "Unidades disponíveis: ", itemEstoque.UnidadesDisponiveis);
 		} 
 
 	}else{
 		
-		for _, ItemEstoque := range estoque.ItensEstoque{
-			fmt.Println(ItemEstoque.Item.Id, ". ", ItemEstoque.Item.Nome , ". Preço: ", ItemEstoque.Item.Preco);
+		for _, itemEstoque := range estoque.ItensEstoque{
+			fmt.Println(itemEstoque.Item.Id, ". ",  itemEstoque.Item.Nome , ". Preço: ", itemEstoque.Item.Codigo, "Unidades disponíveis: ", itemEstoque.UnidadesDisponiveis);
 		} 
 	
 	}
@@ -74,9 +74,9 @@ func (estoque* Estoque) InicializarEstoque(userDefault usuario.Usuario) Estoque{
 	kit_ferramentas:= item.Item{Nome: "Kit de Ferramentas", Preco: 74.99, Codigo: 3};
 
 
-	cafe_qtd := ItemEstoque{ Item: cafe, Unidade: 100 };
-	livro_qtd := ItemEstoque{ Item: livro, Unidade: 50 };
-	kit_ferramentas_qtd := ItemEstoque{ Item: kit_ferramentas, Unidade: 200 };
+	cafe_qtd := ItemEstoque{ Item: cafe, UnidadesDisponiveis: 100 };
+	livro_qtd := ItemEstoque{ Item: livro, UnidadesDisponiveis: 50 };
+	kit_ferramentas_qtd := ItemEstoque{ Item: kit_ferramentas, UnidadesDisponiveis: 200 };
 
 
 	itens_novos := [] ItemEstoque{ cafe_qtd, livro_qtd, kit_ferramentas_qtd};
