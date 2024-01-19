@@ -2,28 +2,14 @@ package main;
 
 import(
 	"fmt";
-	//"os";
+	"os";
 	"loja_online/loja";
 	//"loja_online/usuario";
 	"loja_online/item";
 	//"loja_online/estoque";
 );
 
-/*
-func cadastarItensIniciais(user usuario.Usuario) estoque.Estoque{
-	
-	estoque := estoque.Estoque{};
 
-	cafe:= item.Item{Nome: "Café", Preco: 4.50, Codigo: 1};
-	livro:= item.Item{Nome: "Livro", Preco: 10.50, Codigo: 2};
-	kit_ferramentas:= item.Item{Nome: "Kit de Ferramentas", Preco: 74.99, Codigo: 3};
-
-	itens_novos := [] item.Item{ cafe, livro, kit_ferramentas}
-
-	estoque.CadastraItens(itens_novos, user);
-
-	return estoque;
-}*/
 
 func main(){	
 	
@@ -36,26 +22,6 @@ func main(){
 	exibirMenuCliente(&loja);
 
 	fmt.Println("na main -> ", loja);
-
-/*
-	var igor *usuario.Usuario = new(usuario.Usuario);
-
-	igor.Nome = "Igor";
-	igor.Perfil = "admin";
-
-	estoque.ExibirEstoque(*igor);
-
-	cafe:= item.Item{Nome: "Café", Preco: 4.50, Codigo: 1};
-	livro:= item.Item{Nome: "Livro", Preco: 10.50, Codigo: 2};
-	kit_ferramentas:= item.Item{Nome: "Kit de Ferramentas", Preco: 74.99, Codigo: 3};
-
-	igor.AdicionarItemCarrinho(cafe, 2);
-	igor.AdicionarItemCarrinho(livro, 4);
-	igor.AdicionarItemCarrinho(kit_ferramentas, 1);
-
-
-	igor.ExibirCarrinho();*/
-
 }
 
 func exibirMenuCliente(loja * loja.Loja){
@@ -68,19 +34,18 @@ func exibirMenuCliente(loja * loja.Loja){
 	//var novoUsuario = &(loja.UltimoCliente);
 	var novoUsuario = &(loja.Clientes[len(loja.Clientes) - 1] ); // referencia o endereço do último cliente cadastrado na loja
 
-
-	fmt.Println("novoUsuario ==> ", novoUsuario, " , ", *novoUsuario);
-
-	loja.ListarClientes();
+	//loja.ListarClientes();
 
 	var comando int;
 
 	for{
 
-		fmt.Println("Escolha uma opção: \n")
+		fmt.Println("\n\n__________________________________________________\n")
+		fmt.Println("                  Escolha uma opção: \n")
 		fmt.Println("1- Listar itens para compra");
 		fmt.Println("2- Exibir carrinho de compras");
 		fmt.Println("0- Sair");
+		fmt.Println("\n__________________________________________________\n\n")
 
 		fmt.Scan(&comando);
 
@@ -88,12 +53,12 @@ func exibirMenuCliente(loja * loja.Loja){
 		switch(comando){
 			
 			case 1:
+
 				loja.Estoque.ExibirEstoque(*novoUsuario);
 
 				var desejaEsolher string; 
 
 				fmt.Println("Deseja adicionar algum item ao carrinho de compras? (S = sim, N = Não)");
-
 				fmt.Scan(&desejaEsolher);
 
 				if(desejaEsolher == "S"){
@@ -106,12 +71,7 @@ func exibirMenuCliente(loja * loja.Loja){
 
 					fmt.Scan(&idItemEscolhido);
 
-
-					var idsItens [] int;
-
 					for _, item:= range loja.Estoque.Itens{
-
-						idsItens = append(idsItens, item.Id); 
 
 						if(item.Id == idItemEscolhido){
 							itemEscolhido = item;
@@ -130,7 +90,6 @@ func exibirMenuCliente(loja * loja.Loja){
 						novoUsuario.AdicionarItemCarrinho(itemEscolhido, quantidadeItem);
 
 						fmt.Println("novoUsuario == ", novoUsuario);
-
 						fmt.Println("loja == ", loja);
 
 
@@ -138,14 +97,12 @@ func exibirMenuCliente(loja * loja.Loja){
 						fmt.Println("Id inválido");
 					}
 
-
-				}else{
-					fmt.Println("Otário tu, hein?");
 				}
 
+			case 2:
 
-			case 3:
-				return;
+				novoUsuario.ExibirCarrinho();
+				
 			default:
 				return;
 
