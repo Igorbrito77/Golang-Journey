@@ -11,8 +11,9 @@ import(
 type Loja struct{
 
 	Estoque estoque.Estoque;
-	clientes [] usuario.Usuario;
+	Clientes [] usuario.Usuario;
 	admins [] usuario.Usuario;
+	UltimoCliente usuario.Usuario;
 }
 
 func (loja* Loja) CarregarDadosIniciais(){
@@ -28,7 +29,7 @@ func (loja* Loja) CarregarDadosIniciais(){
 }
 
 
-func (loja* Loja) CadastrarCliente() usuario.Usuario{
+func (loja* Loja) CadastrarCliente(){
 
 	var novoCliente = usuario.Usuario{};
 
@@ -39,14 +40,16 @@ func (loja* Loja) CadastrarCliente() usuario.Usuario{
 
 	fmt.Println("\n Bem-vindo(a), ", novoCliente.Nome, "\n\n _________________");
 
-	loja.clientes = append(loja.clientes, novoCliente);	
+	loja.Clientes = append(loja.Clientes, novoCliente);	
 
-	return novoCliente;
+	loja.UltimoCliente = novoCliente;
+
+	//return novoCliente;
 }
 
 func (loja* Loja) ListarClientes(){
 
-	for i, cliente := range loja.clientes{
+	for i, cliente := range loja.Clientes{
 
 		fmt.Println("Clientes cadastrados: \n")
 

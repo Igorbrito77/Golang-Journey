@@ -2,7 +2,7 @@ package main;
 
 import(
 	"fmt";
-	"os";
+	//"os";
 	"loja_online/loja";
 	//"loja_online/usuario";
 	"loja_online/item";
@@ -33,7 +33,9 @@ func main(){
 
 	fmt.Println(loja)
 
-	exibirMenuCliente(loja);
+	exibirMenuCliente(&loja);
+
+	fmt.Println("na main -> ", loja);
 
 /*
 	var igor *usuario.Usuario = new(usuario.Usuario);
@@ -56,12 +58,18 @@ func main(){
 
 }
 
-func exibirMenuCliente(loja loja.Loja){
+func exibirMenuCliente(loja * loja.Loja){
 
 
 	fmt.Println("'**** LOJA ONLINE *** \n");
 
-	novoUsuario := loja.CadastrarCliente();	
+	loja.CadastrarCliente();	
+	
+	//var novoUsuario = &(loja.UltimoCliente);
+	var novoUsuario = &(loja.Clientes[len(loja.Clientes) - 1] ); // referencia o endereço do último cliente cadastrado na loja
+
+
+	fmt.Println("novoUsuario ==> ", novoUsuario, " , ", *novoUsuario);
 
 	loja.ListarClientes();
 
@@ -80,7 +88,7 @@ func exibirMenuCliente(loja loja.Loja){
 		switch(comando){
 			
 			case 1:
-				loja.Estoque.ExibirEstoque(novoUsuario);
+				loja.Estoque.ExibirEstoque(*novoUsuario);
 
 				var desejaEsolher string; 
 
@@ -111,8 +119,6 @@ func exibirMenuCliente(loja loja.Loja){
 						}
 					}
 
-					//fmt.Println("ids === ", idsItens);
-					fmt.Println("item Escolhido === ", itemEscolhido);
 
 					if(idItemValido){
 
@@ -137,16 +143,11 @@ func exibirMenuCliente(loja loja.Loja){
 					fmt.Println("Otário tu, hein?");
 				}
 
-				//fmt.Scan(&escolhaItem);
-
-
-
-				
 
 			case 3:
 				return;
 			default:
-				os.Exit(0);
+				return;
 
 		}
 
