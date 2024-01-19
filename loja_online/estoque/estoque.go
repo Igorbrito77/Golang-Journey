@@ -22,7 +22,7 @@ func (estoque* Estoque) CadastraItens ( novos_itens [] item.Item, usuario usuari
 		fmt.Println("\n_________________________________ \n");
 
 		for _, novo_item := range novos_itens{
-			fmt.Println(novo_item.Nome , " adicionado ao estoque");
+			fmt.Println(novo_item.Nome , " adicionado ao estoque por ", usuario.Nome);
 			estoque.itens = append(estoque.itens, novo_item);
 		} 
 
