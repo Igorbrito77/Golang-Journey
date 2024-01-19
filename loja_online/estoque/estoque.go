@@ -56,3 +56,21 @@ func (estoque* Estoque) ExibirEstoque( usuario usuario.Usuario){
 	fmt.Println("_________________________________ \n\n");
 
 }
+
+
+func (estoque* Estoque) InicializarEstoque(userDefault usuario.Usuario) Estoque{
+	
+	estoqueInicio := Estoque{};
+
+	cafe:= item.Item{Nome: "Café", Preco: 4.50, Codigo: 1};
+	livro:= item.Item{Nome: "Livro", Preco: 10.50, Codigo: 2};
+	kit_ferramentas:= item.Item{Nome: "Kit de Ferramentas", Preco: 74.99, Codigo: 3};
+
+	itens_novos := [] item.Item{ cafe, livro, kit_ferramentas}
+
+	fmt.Println(" ... Inicializando Estoque ...");
+
+	estoqueInicio.CadastraItens(itens_novos, userDefault);
+
+	return estoqueInicio;
+}

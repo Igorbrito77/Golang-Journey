@@ -4,12 +4,12 @@ import(
 	"fmt";
 	"os";
 	"loja_online/loja";
-	"loja_online/usuario";
-	"loja_online/item";
-	"loja_online/estoque";
+	//"loja_online/usuario";
+	//"loja_online/item";
+	//"loja_online/estoque";
 );
 
-
+/*
 func cadastarItensIniciais(user usuario.Usuario) estoque.Estoque{
 	
 	estoque := estoque.Estoque{};
@@ -23,19 +23,19 @@ func cadastarItensIniciais(user usuario.Usuario) estoque.Estoque{
 	estoque.CadastraItens(itens_novos, user);
 
 	return estoque;
-}
+}*/
 
 func main(){	
 	
 	loja:= loja.Loja{};
 
-	user := usuario.Usuario{Nome: "User",  Perfil: "admin"};
+	loja.CarregarDadosIniciais();
 
-	estoque := cadastarItensIniciais(user);
+	fmt.Println(loja)
 
 	exibirMenuCliente(loja);
 
-
+/*
 	var igor *usuario.Usuario = new(usuario.Usuario);
 
 	igor.Nome = "Igor";
@@ -52,7 +52,7 @@ func main(){
 	igor.AdicionarItemCarrinho(kit_ferramentas, 1);
 
 
-	igor.ExibirCarrinho();
+	igor.ExibirCarrinho();*/
 
 }
 

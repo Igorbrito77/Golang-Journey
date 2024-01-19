@@ -10,8 +10,21 @@ import(
 
 type Loja struct{
 
-	estoque estoque.Estoque;
+	Estoque estoque.Estoque;
 	clientes [] usuario.Usuario;
+	admins [] usuario.Usuario;
+}
+
+func (loja* Loja) CarregarDadosIniciais(){
+	
+	user := usuario.Usuario{Nome: "Default User",  Perfil: "admin"};
+
+	loja.admins = append(loja.admins, user);
+
+	estoque:= estoque.Estoque{};
+
+	loja.Estoque = estoque.InicializarEstoque(user);
+
 }
 
 
