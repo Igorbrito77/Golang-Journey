@@ -28,7 +28,7 @@ func (loja* Loja) CarregarDadosIniciais(){
 }
 
 
-func (loja* Loja) CadastrarCliente(){
+func (loja* Loja) CadastrarCliente() usuario.Usuario{
 
 	var novoCliente = usuario.Usuario{};
 
@@ -41,7 +41,7 @@ func (loja* Loja) CadastrarCliente(){
 
 	loja.clientes = append(loja.clientes, novoCliente);	
 
-
+	return novoCliente;
 }
 
 func (loja* Loja) ListarClientes(){

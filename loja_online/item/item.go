@@ -9,6 +9,7 @@ type Item struct{
 
 	Nome string;
 	Preco float64;
+	Id int;
 	Codigo int;
 
 };

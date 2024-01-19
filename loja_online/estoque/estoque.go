@@ -10,7 +10,7 @@ import(
 
 type Estoque struct{
 
-	itens [] item.Item;
+	Itens [] item.Item;
 
 }
 
@@ -21,9 +21,10 @@ func (estoque* Estoque) CadastraItens ( novos_itens [] item.Item, usuario usuari
 
 		fmt.Println("\n_________________________________ \n");
 
-		for _, novo_item := range novos_itens{
+		for i, novo_item := range novos_itens{
+			novo_item.Id = i + 1;
 			fmt.Println(novo_item.Nome , " adicionado ao estoque por ", usuario.Nome);
-			estoque.itens = append(estoque.itens, novo_item);
+			estoque.Itens = append(estoque.Itens, novo_item);
 		} 
 
 		fmt.Println("_________________________________ \n\n");
@@ -41,14 +42,14 @@ func (estoque* Estoque) ExibirEstoque( usuario usuario.Usuario){
 	
 	if(usuario.Perfil == "admin"){
 
-		for _, item := range estoque.itens{
-			fmt.Println(item.Nome , ". Preço: ", item.Preco, ". Código: ", item.Codigo);
+		for _, item := range estoque.Itens{
+			fmt.Println(item.Id, ". ",  item.Nome , ". Preço: ", item.Preco, ". Código: ", item.Codigo);
 		} 
 
 	}else{
 		
-		for _, item := range estoque.itens{
-			fmt.Println(item.Nome , ". Preço: ", item.Preco);
+		for _, item := range estoque.Itens{
+			fmt.Println(item.Id, ". ", item.Nome , ". Preço: ", item.Preco);
 		} 
 	
 	}

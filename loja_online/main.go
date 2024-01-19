@@ -5,7 +5,7 @@ import(
 	"os";
 	"loja_online/loja";
 	//"loja_online/usuario";
-	//"loja_online/item";
+	"loja_online/item";
 	//"loja_online/estoque";
 );
 
@@ -61,12 +61,7 @@ func exibirMenuCliente(loja loja.Loja){
 
 	fmt.Println("'**** LOJA ONLINE *** \n");
 
-	loja.CadastrarCliente();	
-
-	loja.CadastrarCliente();	
-
-	loja.CadastrarCliente();	
-
+	novoUsuario := loja.CadastrarCliente();	
 
 	loja.ListarClientes();
 
@@ -75,7 +70,7 @@ func exibirMenuCliente(loja loja.Loja){
 	for{
 
 		fmt.Println("Escolha uma opção: \n")
-		fmt.Println("1- Listar itens");
+		fmt.Println("1- Listar itens para compra");
 		fmt.Println("2- Exibir carrinho de compras");
 		fmt.Println("0- Sair");
 
@@ -85,7 +80,69 @@ func exibirMenuCliente(loja loja.Loja){
 		switch(comando){
 			
 			case 1:
-				fmt.Println("deu bom");
+				loja.Estoque.ExibirEstoque(novoUsuario);
+
+				var desejaEsolher string; 
+
+				fmt.Println("Deseja adicionar algum item ao carrinho de compras? (S = sim, N = Não)");
+
+				fmt.Scan(&desejaEsolher);
+
+				if(desejaEsolher == "S"){
+
+					fmt.Println("Digite o id do item que você deseja: ");
+
+					var idItemEscolhido int;
+					var idItemValido bool = false;
+					var itemEscolhido item.Item;
+
+					fmt.Scan(&idItemEscolhido);
+
+
+					var idsItens [] int;
+
+					for _, item:= range loja.Estoque.Itens{
+
+						idsItens = append(idsItens, item.Id); 
+
+						if(item.Id == idItemEscolhido){
+							itemEscolhido = item;
+							idItemValido = true;
+						}
+					}
+
+					//fmt.Println("ids === ", idsItens);
+					fmt.Println("item Escolhido === ", itemEscolhido);
+
+					if(idItemValido){
+
+						var quantidadeItem int;
+
+						fmt.Println("Digita e quantidade deseja deste item: ");
+						fmt.Scan(&quantidadeItem);
+
+						novoUsuario.AdicionarItemCarrinho(itemEscolhido, quantidadeItem);
+
+						fmt.Println("novoUsuario == ", novoUsuario);
+
+						fmt.Println("loja == ", loja);
+
+
+					}else{
+						fmt.Println("Id inválido");
+					}
+
+
+				}else{
+					fmt.Println("Otário tu, hein?");
+				}
+
+				//fmt.Scan(&escolhaItem);
+
+
+
+				
+
 			case 3:
 				return;
 			default:
