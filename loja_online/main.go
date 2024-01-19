@@ -1,7 +1,9 @@
 package main;
 
 import(
-	//"fmt";
+	"fmt";
+	"os";
+	"loja_online/loja";
 	"loja_online/usuario";
 	"loja_online/item";
 	"loja_online/estoque";
@@ -23,11 +25,16 @@ func cadastarItensIniciais(user usuario.Usuario) estoque.Estoque{
 	return estoque;
 }
 
-func main(){
+func main(){	
+	
+	loja:= loja.Loja{};
 
 	user := usuario.Usuario{Nome: "User",  Perfil: "admin"};
 
 	estoque := cadastarItensIniciais(user);
+
+	exibirMenuCliente(loja);
+
 
 	var igor *usuario.Usuario = new(usuario.Usuario);
 
@@ -48,3 +55,84 @@ func main(){
 	igor.ExibirCarrinho();
 
 }
+
+func exibirMenuCliente(loja loja.Loja){
+
+
+	fmt.Println("'**** LOJA ONLINE *** \n");
+
+	loja.CadastrarCliente();	
+
+	loja.CadastrarCliente();	
+
+	loja.CadastrarCliente();	
+
+
+	loja.ListarClientes();
+
+	var comando int;
+
+	for{
+
+		fmt.Println("Escolha uma opção: \n")
+		fmt.Println("1- Listar itens");
+		fmt.Println("2- Exibir carrinho de compras");
+		fmt.Println("0- Sair");
+
+		fmt.Scan(&comando);
+
+
+		switch(comando){
+			
+			case 1:
+				fmt.Println("deu bom");
+			case 3:
+				return;
+			default:
+				os.Exit(0);
+
+		}
+
+	}
+
+
+
+
+
+}
+
+
+func exibirMenu(){
+
+
+	fmt.Println("'**** LOJA ONLINE *** \n");
+
+	var comando int;
+
+	for{
+
+		fmt.Println("Escolha uma opção: \n")
+		fmt.Println("1- Cadastrar novo item");
+		fmt.Println("2- Atualizar quanridade de itens");
+		fmt.Scan(&comando);
+
+
+		switch(comando){
+			
+			case 1:
+				fmt.Println("deu bom");
+			case 3:
+				return;
+			default:
+				os.Exit(0);
+
+		}
+
+	}
+
+
+
+
+
+}
+
