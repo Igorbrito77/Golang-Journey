@@ -71,10 +71,10 @@ func exibirMenuCliente(loja * loja.Loja){
 
 					fmt.Scan(&idItemEscolhido);
 
-					for _, item:= range loja.Estoque.Itens{
+					for _, itemEstoque:= range loja.Estoque.ItensEstoque{
 
-						if(item.Id == idItemEscolhido){
-							itemEscolhido = item;
+						if(itemEstoque.Item.Id == idItemEscolhido){
+							itemEscolhido = itemEstoque.Item;
 							idItemValido = true;
 						}
 					}

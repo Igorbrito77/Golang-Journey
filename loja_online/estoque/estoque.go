@@ -8,24 +8,30 @@ import(
 
 // depois ter associação pra se ter o numero de produtos no estoque
 
+type ItemEstoque struct{
+
+	Item item.Item;
+	Unidade int;
+};
+
+
 type Estoque struct{
 
-	Itens [] item.Item;
-
+	ItensEstoque [] ItemEstoque;
 }
 
 
-func (estoque* Estoque) CadastraItens ( novos_itens [] item.Item, usuario usuario.Usuario){
+func (estoque* Estoque) CadastraItens ( itens_estoque [] ItemEstoque, usuario usuario.Usuario){
 
 	if(usuario.Perfil == "admin"){
 
 		fmt.Println("\n_________________________________ \n");
 
-		for i, novo_item := range novos_itens{
-			novo_item.Id = i + 1;
-			fmt.Println(novo_item.Nome , " adicionado ao estoque por ", usuario.Nome);
-			estoque.Itens = append(estoque.Itens, novo_item);
-		} 
+		for i, item_estoque := range itens_estoque{
+			item_estoque.Item.Id = i + 1;
+			fmt.Println(item_estoque.Item.Nome , " adicionado ao estoque por ", usuario.Nome);
+			estoque.ItensEstoque = append(estoque.ItensEstoque, item_estoque);
+			} 
 
 		fmt.Println("_________________________________ \n\n");
 
@@ -42,14 +48,14 @@ func (estoque* Estoque) ExibirEstoque( usuario usuario.Usuario){
 	
 	if(usuario.Perfil == "admin"){
 
-		for _, item := range estoque.Itens{
-			fmt.Println(item.Id, ". ",  item.Nome , ". Preço: ", item.Preco, ". Código: ", item.Codigo);
+		for _, ItemEstoque := range estoque.ItensEstoque{
+			fmt.Println(ItemEstoque.Item.Id, ". ",  ItemEstoque.Item.Nome , ". Preço: ", ItemEstoque.Item.Preco, ". Código: ", ItemEstoque.Item.Codigo);
 		} 
 
 	}else{
 		
-		for _, item := range estoque.Itens{
-			fmt.Println(item.Id, ". ", item.Nome , ". Preço: ", item.Preco);
+		for _, ItemEstoque := range estoque.ItensEstoque{
+			fmt.Println(ItemEstoque.Item.Id, ". ", ItemEstoque.Item.Nome , ". Preço: ", ItemEstoque.Item.Preco);
 		} 
 	
 	}
@@ -67,7 +73,13 @@ func (estoque* Estoque) InicializarEstoque(userDefault usuario.Usuario) Estoque{
 	livro:= item.Item{Nome: "Livro", Preco: 10.50, Codigo: 2};
 	kit_ferramentas:= item.Item{Nome: "Kit de Ferramentas", Preco: 74.99, Codigo: 3};
 
-	itens_novos := [] item.Item{ cafe, livro, kit_ferramentas}
+
+	cafe_qtd := ItemEstoque{ Item: cafe, Unidade: 100 };
+	livro_qtd := ItemEstoque{ Item: livro, Unidade: 50 };
+	kit_ferramentas_qtd := ItemEstoque{ Item: kit_ferramentas, Unidade: 200 };
+
+
+	itens_novos := [] ItemEstoque{ cafe_qtd, livro_qtd, kit_ferramentas_qtd};
 
 	fmt.Println(" ... Inicializando Estoque ...");
 
