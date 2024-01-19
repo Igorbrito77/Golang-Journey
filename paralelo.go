@@ -4,17 +4,23 @@ import(
 	"fmt";
 	"sync";
 	"time";
+	"runtime";
 );
 
 var wg sync.WaitGroup;
 
 func main(){
 
+	fmt.Println(runtime.NumCPU());
+	fmt.Println(runtime.NumGoroutine());
+
 	wg.Add(2)
 
 	go func1();
 
 	go func2();
+
+	fmt.Println(runtime.NumGoroutine());
 
 	wg.Wait();
 
