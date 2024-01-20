@@ -6,14 +6,11 @@ import(
 	"loja_online/usuario";
 );
 
-// depois ter associação pra se ter o numero de produtos no estoque
-
 type Loja struct{
 
 	Estoque estoque.Estoque;
 	Clientes [] usuario.Usuario;
 	admins [] usuario.Usuario;
-	UltimoCliente usuario.Usuario;
 }
 
 func (loja* Loja) CarregarDadosIniciais(){
@@ -39,13 +36,12 @@ func (loja* Loja) CadastrarCliente(){
 	fmt.Println("Digite seu nome: \n")
 	fmt.Scan(&novoCliente.Nome);
 
+	novoCliente.Perfil = "cliente";
+
 	fmt.Println("\n 								Bem-vindo(a), ", novoCliente.Nome);
 
 	loja.Clientes = append(loja.Clientes, novoCliente);	
 
-	loja.UltimoCliente = novoCliente;
-
-	//return novoCliente;
 }
 
 func (loja* Loja) ListarClientes(){
@@ -78,6 +74,5 @@ func (loja * Loja) FinalizarCompra(novoUsuario *usuario.Usuario){
 	}
 
 	(*novoUsuario).ItensEscolhidos = nil;
-
 
 }

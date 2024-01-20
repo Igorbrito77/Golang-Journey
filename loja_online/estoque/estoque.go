@@ -22,20 +22,14 @@ type Estoque struct{
 
 func (estoque* Estoque) CadastraItens ( itens_estoque [] ItemEstoque, usuario usuario.Usuario){
 
-	if(usuario.Perfil == "admin"){
+	for i, item_estoque := range itens_estoque{
+		item_estoque.Item.Id = i + 1;
+		fmt.Println(item_estoque.Item.Nome , " adicionado ao estoque por ", usuario.Nome);
+		estoque.ItensEstoque = append(estoque.ItensEstoque, item_estoque);
+		} 
 
-		//fmt.Println("\n\n____________________________________________________________________________________________________________________________________________\n")
-
-		for i, item_estoque := range itens_estoque{
-			item_estoque.Item.Id = i + 1;
-			fmt.Println(item_estoque.Item.Nome , " adicionado ao estoque por ", usuario.Nome);
-			estoque.ItensEstoque = append(estoque.ItensEstoque, item_estoque);
-			} 
-
-		fmt.Println("\n____________________________________________________________________________________________________________________________________________\n")
-	}else{
-		fmt.Println("Você não tem permissão para cadastrar um item");
-	}	
+	fmt.Println("\n____________________________________________________________________________________________________________________________________________\n")
+	
 }
 
 func (estoque* Estoque) ExibirEstoque( usuario usuario.Usuario){ // talvez criar uma interface para usar essa função de acordo com o perifl do usuário

@@ -2,13 +2,23 @@ package main;
 
 import(
 	"fmt";
-	"os";
 	"loja_online/loja";
 	//"loja_online/usuario";
 	//"loja_online/item";
 	"loja_online/estoque";
 );
 
+/*
+	Novas funcionalidades que podem ser adiconadas futuramente:
+
+	* Mostrar dados do usuário logado
+	* Listar as compras finalizadas pelo usuário
+	* Permitir usuários de perfil administrador adicionarem itens ao estoque durante a execução do programa
+	* Permitir trocas de usuário durante a execução do programa 
+
+	* Mostrar mensagem de compra efeutado com sucesso
+	* Formatar status da loja 
+*/
 
 
 func main(){	
@@ -31,7 +41,6 @@ func exibirMenuCliente(loja * loja.Loja){
 
 	loja.CadastrarCliente();	
 	
-	//var novoUsuario = &(loja.UltimoCliente);
 	var novoUsuario = &(loja.Clientes[len(loja.Clientes) - 1] ); // referencia o endereço do último cliente cadastrado na loja
 	//loja.ListarClientes();
 
@@ -123,41 +132,6 @@ func exibirMenuCliente(loja * loja.Loja){
 		}
 
 	}
-
-}
-
-
-func exibirMenu(){
-
-
-	fmt.Println("'**** LOJA ONLINE *** \n");
-
-	var comando int;
-
-	for{
-
-		fmt.Println("Escolha uma opção: \n")
-		fmt.Println("1- Cadastrar novo item");
-		fmt.Println("2- Atualizar quanridade de itens");
-		fmt.Scan(&comando);
-
-
-		switch(comando){
-			
-			case 1:
-				fmt.Println("deu bom");
-			case 3:
-				return;
-			default:
-				os.Exit(0);
-
-		}
-
-	}
-
-
-
-
 
 }
 
