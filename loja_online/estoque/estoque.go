@@ -41,8 +41,8 @@ func (estoque* Estoque) CadastraItens ( itens_estoque [] ItemEstoque, usuario us
 
 func (estoque* Estoque) ExibirEstoque( usuario usuario.Usuario){ // talvez criar uma interface para usar essa função de acordo com o perifl do usuário
 
-	fmt.Println("\n_________________________________ \n");
-	fmt.Println("     ESTOQUE:         \n");
+	fmt.Println("\n\n____________________________________________________________________________________________________________________________________________\n")
+	fmt.Println("\n 								**** ESTOQUE ****         \n");
 	
 	if(usuario.Perfil == "admin"){
 
@@ -65,8 +65,6 @@ func (estoque* Estoque) ExibirEstoque( usuario usuario.Usuario){ // talvez criar
 	
 	}
 	
-	fmt.Println("_________________________________ \n\n");
-
 }
 
 

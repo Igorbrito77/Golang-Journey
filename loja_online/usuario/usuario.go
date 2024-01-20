@@ -32,8 +32,8 @@ func (usuario* Usuario) AdicionarItemCarrinho(item_escolhido item.Item, quantida
 
 func (usuario* Usuario) ExibirCarrinho(){
 
-	fmt.Println("\n_________________________________ \n");
-	fmt.Println(" **** CARRINHO DE COMPRAS DO ", usuario.Nome, " ****    \n");
+	fmt.Println("\n\n____________________________________________________________________________________________________________________________________________\n")
+	fmt.Println(" 								**** CARRINHO DE COMPRAS DO ", usuario.Nome, " **** \n")
 
 	var valor_total = 0.;
 
@@ -47,9 +47,7 @@ func (usuario* Usuario) ExibirCarrinho(){
 		valor_total +=  ( item_escolhido.Item.Preco * float64(item_escolhido.Quantidade) );
 	}
 
-	fmt.Println("Valor total: ", valor_total);
-
-	fmt.Println("_________________________________ \n\n");
+	fmt.Println("*  Valor total: ", valor_total);
 }
 
 func (usuario* Usuario) VerificarCarrinhoCheio() bool{

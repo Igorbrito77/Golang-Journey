@@ -33,12 +33,13 @@ func (loja* Loja) CadastrarCliente(){
 
 	var novoCliente = usuario.Usuario{};
 
-	//var nome_usuario string;
+	fmt.Println("\n\n____________________________________________________________________________________________________________________________________________\n")
+	fmt.Println("\n 								**** CADASTRO DE USUÁRIO *** \n");
 
 	fmt.Println("Digite seu nome: \n")
 	fmt.Scan(&novoCliente.Nome);
 
-	fmt.Println("\n Bem-vindo(a), ", novoCliente.Nome, "\n\n _________________");
+	fmt.Println("\n 								Bem-vindo(a), ", novoCliente.Nome);
 
 	loja.Clientes = append(loja.Clientes, novoCliente);	
 

@@ -17,17 +17,17 @@ func main(){
 
 	loja.CarregarDadosIniciais();
 
-	fmt.Println(loja)
+	fmt.Println(loja) // ESTADO INICIAL DA LOJA
 
 	exibirMenuCliente(&loja);
 
-	fmt.Println("na main -> ", loja);
+	fmt.Println("na main -> ", loja); // ESTADO FINAL DA LOJA
 }
 
 func exibirMenuCliente(loja * loja.Loja){
 
-
-	fmt.Println("'**** LOJA ONLINE *** \n");
+	fmt.Println("\n\n____________________________________________________________________________________________________________________________________________\n")
+	fmt.Println("\n 								**** LOJA ONLINE *** \n");
 
 	loja.CadastrarCliente();	
 	
@@ -40,13 +40,15 @@ func exibirMenuCliente(loja * loja.Loja){
 
 	for{
 
-		fmt.Println("\n\n__________________________________________________\n")
-		fmt.Println("                  Escolha uma opção: \n")
+		fmt.Println("\n\n____________________________________________________________________________________________________________________________________________\n")
+		fmt.Println(" 								**** MENU PRINCIPAL **** \n")
 		fmt.Println("1- Listar itens para compra");
 		fmt.Println("2- Exibir carrinho de compras");
 		fmt.Println("3- Finalizar compra");
 		fmt.Println("0- Sair");
-		fmt.Println("\n__________________________________________________\n\n")
+		fmt.Println(" 								Escolha uma opção: \n")
+
+		//fmt.Println("\n\n____________________________________________________________________________________________________________________________________________\n")
 
 		fmt.Scan(&comando);
 
@@ -59,7 +61,7 @@ func exibirMenuCliente(loja * loja.Loja){
 
 				var desejaEsolher string; 
 
-				fmt.Println("Deseja adicionar algum item ao carrinho de compras? (S = sim, N = Não)");
+				fmt.Println("\n\nDeseja adicionar algum item ao carrinho de compras? (S = sim, N = Não)");
 				fmt.Scan(&desejaEsolher);
 
 				if(desejaEsolher == "S"){
