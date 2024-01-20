@@ -94,15 +94,15 @@ func (estoque* Estoque) InicializarEstoque(userDefault usuario.Usuario) Estoque{
 }
 
 
-func (estoque* Estoque) RetornarItensDisponiveis() []item.Item{
+func (estoque* Estoque) RetornarItensDisponiveis() [] ItemEstoque{
 
 	
-	var itens_disponiveis [] item.Item;
+	var itens_disponiveis [] ItemEstoque;
 
 	for _, itemEstoque := range estoque.ItensEstoque{
 
 		if(itemEstoque.UnidadesDisponiveis > 0){
-			itens_disponiveis = append(itens_disponiveis, itemEstoque.Item);
+			itens_disponiveis = append(itens_disponiveis, itemEstoque);
 		}
 	} 
 	

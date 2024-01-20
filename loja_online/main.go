@@ -5,8 +5,8 @@ import(
 	"os";
 	"loja_online/loja";
 	//"loja_online/usuario";
-	"loja_online/item";
-	//"loja_online/estoque";
+	//"loja_online/item";
+	"loja_online/estoque";
 );
 
 
@@ -68,7 +68,7 @@ func exibirMenuCliente(loja * loja.Loja){
 
 					var idItemEscolhido int;
 					var idItemValido bool = false;
-					var itemEscolhido item.Item;
+					var itemEscolhidoEstoque estoque.ItemEstoque;
 
 					fmt.Scan(&idItemEscolhido);
 
@@ -76,8 +76,8 @@ func exibirMenuCliente(loja * loja.Loja){
 
 					for _, item_disponivel_estoque:= range itens_disponiveis_estoque{
 
-						if(item_disponivel_estoque.Id == idItemEscolhido){
-							itemEscolhido = item_disponivel_estoque;
+						if(item_disponivel_estoque.Item.Id == idItemEscolhido){
+							itemEscolhidoEstoque = item_disponivel_estoque;
 							idItemValido = true;
 						}
 					}
@@ -87,13 +87,16 @@ func exibirMenuCliente(loja * loja.Loja){
 
 						var quantidadeItem int;
 
-						fmt.Println("Digita e quantidade deseja deste item: ");
+						fmt.Println("Digite a quantidade desejada deste item: ");
 						fmt.Scan(&quantidadeItem);
 
-						novoUsuario.AdicionarItemCarrinho(itemEscolhido, quantidadeItem);
-
-						fmt.Println("novoUsuario == ", novoUsuario);
-						fmt.Println("loja == ", loja);
+						if(quantidadeItem <= itemEscolhidoEstoque.UnidadesDisponiveis){
+							novoUsuario.AdicionarItemCarrinho(itemEscolhidoEstoque.Item, quantidadeItem);
+						}else{
+							fmt.Println("Não há tantos produtos em estoque, digite um número igual ao inferior ao disponível do estoque");
+						}
+				
+						//fmt.Println("loja == ", loja);
 
 
 					}else{
