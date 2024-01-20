@@ -110,7 +110,14 @@ func exibirMenuCliente(loja * loja.Loja){
 				novoUsuario.ExibirCarrinho();
 
 			case 3:
-				loja.FinalizarCompra(novoUsuario);
+
+				var carrrinhoCheio = novoUsuario.VerificarCarrinhoCheio();
+
+				if(carrrinhoCheio){
+					loja.FinalizarCompra(novoUsuario);
+				}else{
+					fmt.Println("Seu carrinho de compras está vazio. Selecione algum item para finalizar uma compra");
+				}
 				
 			default:
 				return;

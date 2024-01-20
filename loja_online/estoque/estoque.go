@@ -59,7 +59,7 @@ func (estoque* Estoque) ExibirEstoque( usuario usuario.Usuario){ // talvez criar
 		for _, itemEstoque := range estoque.ItensEstoque{
 
 			if(itemEstoque.UnidadesDisponiveis > 0){
-				fmt.Println(itemEstoque.Item.Id, ". ",  itemEstoque.Item.Nome , ". Preço: ", itemEstoque.Item.Codigo, "Unidades disponíveis: ", itemEstoque.UnidadesDisponiveis);
+				fmt.Println(itemEstoque.Item.Id, ". ",  itemEstoque.Item.Nome , ". Preço: ", itemEstoque.Item.Preco, "Unidades disponíveis: ", itemEstoque.UnidadesDisponiveis);
 			}
 		} 
 	

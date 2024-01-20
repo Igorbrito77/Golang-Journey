@@ -51,3 +51,12 @@ func (usuario* Usuario) ExibirCarrinho(){
 
 	fmt.Println("_________________________________ \n\n");
 }
+
+func (usuario* Usuario) VerificarCarrinhoCheio() bool{
+
+	if(len(usuario.ItensEscolhidos) > 0){
+		return true;
+	}else{
+		return false;
+	}
+}
