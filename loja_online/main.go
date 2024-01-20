@@ -105,7 +105,7 @@ func exibirMenuCliente(loja * loja.Loja){
 				novoUsuario.ExibirCarrinho();
 
 			case 3:
-				loja.FinalizarCompra(*novoUsuario);
+				loja.FinalizarCompra(novoUsuario);
 				
 			default:
 				return;

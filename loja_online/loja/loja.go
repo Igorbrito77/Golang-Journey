@@ -61,7 +61,7 @@ func (loja* Loja) ListarClientes(){
 
 }
 
-func (loja * Loja) FinalizarCompra(novoUsuario usuario.Usuario){
+func (loja * Loja) FinalizarCompra(novoUsuario *usuario.Usuario){
 
 
 	for _, item_escolhido := range novoUsuario.ItensEscolhidos{
@@ -70,22 +70,13 @@ func (loja * Loja) FinalizarCompra(novoUsuario usuario.Usuario){
 
 			if(loja_item.Item.Id == item_escolhido.Item.Id){
 
-				fmt.Println("item_escolhido== ", item_escolhido);
-
-				fmt.Println("loja_item== ", loja_item);
-
-
 				var alterador = &(loja.Estoque.ItensEstoque[loja_item.Item.Id - 1] );
-
-				fmt.Println("alterador == ", alterador);
-
 				(*alterador).UnidadesDisponiveis -= item_escolhido.Quantidade;
 			}
 		}
 	}
 
-	novoUsuario.ItensEscolhidos = nil;
+	(*novoUsuario).ItensEscolhidos = nil;
 
-	
 
 }
