@@ -60,3 +60,32 @@ func (loja* Loja) ListarClientes(){
 	fmt.Println("\n _________________\n\n");
 
 }
+
+func (loja * Loja) FinalizarCompra(novoUsuario usuario.Usuario){
+
+
+	for _, item_escolhido := range novoUsuario.ItensEscolhidos{
+
+		for _, loja_item := range loja.Estoque.ItensEstoque {
+
+			if(loja_item.Item.Id == item_escolhido.Item.Id){
+
+				fmt.Println("item_escolhido== ", item_escolhido);
+
+				fmt.Println("loja_item== ", loja_item);
+
+
+				var alterador = &(loja.Estoque.ItensEstoque[loja_item.Item.Id - 1] );
+
+				fmt.Println("alterador == ", alterador);
+
+				(*alterador).UnidadesDisponiveis -= item_escolhido.Quantidade;
+			}
+		}
+	}
+
+	novoUsuario.ItensEscolhidos = nil;
+
+	
+
+}

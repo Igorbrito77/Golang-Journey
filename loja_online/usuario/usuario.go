@@ -20,6 +20,8 @@ type Usuario struct{
 	ItensEscolhidos [] ItemUsuario;
 };
 
+
+
 func (usuario* Usuario) AdicionarItemCarrinho(item_escolhido item.Item, quantidade int){
 
 	novo_item_escolhido := ItemUsuario{ Item: item_escolhido, Quantidade: quantidade};

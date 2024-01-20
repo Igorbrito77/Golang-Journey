@@ -44,6 +44,7 @@ func exibirMenuCliente(loja * loja.Loja){
 		fmt.Println("                  Escolha uma opção: \n")
 		fmt.Println("1- Listar itens para compra");
 		fmt.Println("2- Exibir carrinho de compras");
+		fmt.Println("3- Finalizar compra");
 		fmt.Println("0- Sair");
 		fmt.Println("\n__________________________________________________\n\n")
 
@@ -103,8 +104,8 @@ func exibirMenuCliente(loja * loja.Loja){
 
 				novoUsuario.ExibirCarrinho();
 
-			// case 3:
-			// 	novoUsuario.FinalizarCompra();
+			case 3:
+				loja.FinalizarCompra(*novoUsuario);
 				
 			default:
 				return;
