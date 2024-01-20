@@ -72,10 +72,12 @@ func exibirMenuCliente(loja * loja.Loja){
 
 					fmt.Scan(&idItemEscolhido);
 
-					for _, itemEstoque:= range loja.Estoque.ItensEstoque{
+					var itens_disponiveis_estoque = loja.Estoque.RetornarItensDisponiveis();
 
-						if(itemEstoque.Item.Id == idItemEscolhido){
-							itemEscolhido = itemEstoque.Item;
+					for _, item_disponivel_estoque:= range itens_disponiveis_estoque{
+
+						if(item_disponivel_estoque.Id == idItemEscolhido){
+							itemEscolhido = item_disponivel_estoque;
 							idItemValido = true;
 						}
 					}

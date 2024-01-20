@@ -6,7 +6,6 @@ import(
 	"loja_online/usuario";
 );
 
-// depois ter associação pra se ter o numero de produtos no estoque
 
 type ItemEstoque struct{
 
@@ -40,22 +39,28 @@ func (estoque* Estoque) CadastraItens ( itens_estoque [] ItemEstoque, usuario us
 	}	
 }
 
-func (estoque* Estoque) ExibirEstoque( usuario usuario.Usuario){
+func (estoque* Estoque) ExibirEstoque( usuario usuario.Usuario){ // talvez criar uma interface para usar essa função de acordo com o perifl do usuário
 
-	// depois listar apenas os produtos em estoque com quantidade maior que 0
 	fmt.Println("\n_________________________________ \n");
 	fmt.Println("     ESTOQUE:         \n");
 	
 	if(usuario.Perfil == "admin"){
 
 		for _, itemEstoque := range estoque.ItensEstoque{
-			fmt.Println(itemEstoque.Item.Id, ". ",  itemEstoque.Item.Nome , ". Preço: ", itemEstoque.Item.Preco, ". Código: ", itemEstoque.Item.Codigo, "Unidades disponíveis: ", itemEstoque.UnidadesDisponiveis);
+
+			if(itemEstoque.UnidadesDisponiveis > 0){
+				fmt.Println(itemEstoque.Item.Id, ". ",  itemEstoque.Item.Nome , ". Preço: ", itemEstoque.Item.Preco, ". Código: ", itemEstoque.Item.Codigo, "Unidades disponíveis: ", itemEstoque.UnidadesDisponiveis);
+			}
+
 		} 
 
 	}else{
 		
 		for _, itemEstoque := range estoque.ItensEstoque{
-			fmt.Println(itemEstoque.Item.Id, ". ",  itemEstoque.Item.Nome , ". Preço: ", itemEstoque.Item.Codigo, "Unidades disponíveis: ", itemEstoque.UnidadesDisponiveis);
+
+			if(itemEstoque.UnidadesDisponiveis > 0){
+				fmt.Println(itemEstoque.Item.Id, ". ",  itemEstoque.Item.Nome , ". Preço: ", itemEstoque.Item.Codigo, "Unidades disponíveis: ", itemEstoque.UnidadesDisponiveis);
+			}
 		} 
 	
 	}
@@ -86,4 +91,20 @@ func (estoque* Estoque) InicializarEstoque(userDefault usuario.Usuario) Estoque{
 	estoqueInicio.CadastraItens(itens_novos, userDefault);
 
 	return estoqueInicio;
+}
+
+
+func (estoque* Estoque) RetornarItensDisponiveis() []item.Item{
+
+	
+	var itens_disponiveis [] item.Item;
+
+	for _, itemEstoque := range estoque.ItensEstoque{
+
+		if(itemEstoque.UnidadesDisponiveis > 0){
+			itens_disponiveis = append(itens_disponiveis, itemEstoque.Item);
+		}
+	} 
+	
+	return itens_disponiveis;
 }
