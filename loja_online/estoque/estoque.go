@@ -24,7 +24,7 @@ func (estoque* Estoque) CadastraItens ( itens_estoque [] ItemEstoque, usuario us
 
 	if(usuario.Perfil == "admin"){
 
-		fmt.Println("\n_________________________________ \n");
+		//fmt.Println("\n\n____________________________________________________________________________________________________________________________________________\n")
 
 		for i, item_estoque := range itens_estoque{
 			item_estoque.Item.Id = i + 1;
@@ -32,8 +32,7 @@ func (estoque* Estoque) CadastraItens ( itens_estoque [] ItemEstoque, usuario us
 			estoque.ItensEstoque = append(estoque.ItensEstoque, item_estoque);
 			} 
 
-		fmt.Println("_________________________________ \n\n");
-
+		fmt.Println("\n____________________________________________________________________________________________________________________________________________\n")
 	}else{
 		fmt.Println("Você não tem permissão para cadastrar um item");
 	}	
@@ -84,7 +83,7 @@ func (estoque* Estoque) InicializarEstoque(userDefault usuario.Usuario) Estoque{
 
 	itens_novos := [] ItemEstoque{ cafe_qtd, livro_qtd, kit_ferramentas_qtd};
 
-	fmt.Println(" ... Inicializando Estoque ...");
+	fmt.Println("\n 								... Inicializando Estoque ... \n");
 
 	estoqueInicio.CadastraItens(itens_novos, userDefault);
 

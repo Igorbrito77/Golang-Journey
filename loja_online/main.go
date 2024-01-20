@@ -17,11 +17,11 @@ func main(){
 
 	loja.CarregarDadosIniciais();
 
-	fmt.Println(loja) // ESTADO INICIAL DA LOJA
+	fmt.Println("ESTADO INICIAL DA LOJA ->", loja);
 
 	exibirMenuCliente(&loja);
 
-	fmt.Println("na main -> ", loja); // ESTADO FINAL DA LOJA
+	fmt.Println("ESTADO FINAL DA LOJA -> ", loja);
 }
 
 func exibirMenuCliente(loja * loja.Loja){
@@ -33,7 +33,6 @@ func exibirMenuCliente(loja * loja.Loja){
 	
 	//var novoUsuario = &(loja.UltimoCliente);
 	var novoUsuario = &(loja.Clientes[len(loja.Clientes) - 1] ); // referencia o endereço do último cliente cadastrado na loja
-
 	//loja.ListarClientes();
 
 	var comando int;
@@ -48,10 +47,7 @@ func exibirMenuCliente(loja * loja.Loja){
 		fmt.Println("0- Sair");
 		fmt.Println(" 								Escolha uma opção: \n")
 
-		//fmt.Println("\n\n____________________________________________________________________________________________________________________________________________\n")
-
 		fmt.Scan(&comando);
-
 
 		switch(comando){
 			
@@ -95,11 +91,9 @@ func exibirMenuCliente(loja * loja.Loja){
 						if(quantidadeItem <= itemEscolhidoEstoque.UnidadesDisponiveis){
 							novoUsuario.AdicionarItemCarrinho(itemEscolhidoEstoque.Item, quantidadeItem);
 						}else{
-							fmt.Println("Não há tantos produtos em estoque, digite um número igual ao inferior ao disponível do estoque");
+							fmt.Println("\n\n                                    ... Não há tantos produtos em estoque, digite um número igual ao inferior ao disponível do estoque ...");
 						}
 				
-						//fmt.Println("loja == ", loja);
-
 
 					}else{
 						fmt.Println("Id inválido");
@@ -118,19 +112,17 @@ func exibirMenuCliente(loja * loja.Loja){
 				if(carrrinhoCheio){
 					loja.FinalizarCompra(novoUsuario);
 				}else{
-					fmt.Println("Seu carrinho de compras está vazio. Selecione algum item para finalizar uma compra");
+					fmt.Println("                                    ... Seu carrinho de compras está vazio. Selecione algum item para finalizar uma compra ...")
 				}
 				
 			default:
+				fmt.Println("                                                       ... Saindo da Loja Online. Até breve! ...")
+				fmt.Println("\n\n____________________________________________________________________________________________________________________________________________\n")
 				return;
 
 		}
 
 	}
-
-
-
-
 
 }
 

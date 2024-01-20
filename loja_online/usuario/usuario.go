@@ -38,7 +38,7 @@ func (usuario* Usuario) ExibirCarrinho(){
 	var valor_total = 0.;
 
 	if(len(usuario.ItensEscolhidos) == 0 ){
-		fmt.Println(" ... Carrinho de compras vazio ...")
+		fmt.Println(" 								... Carrinho de compras vazio ...")
 	}
 
 	for _, item_escolhido := range usuario.ItensEscolhidos{
