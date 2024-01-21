@@ -12,7 +12,14 @@ type Barbaro struct{
 
 }
 
-func (barbaro Barbaro) Atacar(){
+func (barbaro * Barbaro) Atacar(){
 
 	fmt.Println("Bárbaro atacou com o machado. Dano: ", barbaro.Atk);
+}
+
+func (barbaro * Barbaro) AumentarAtk(incremento_atk int){
+
+	barbaro.Atk += incremento_atk;
+
+	fmt.Println("atk agora == ", barbaro.Atk );
 }
