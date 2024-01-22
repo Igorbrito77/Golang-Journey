@@ -6,6 +6,10 @@ type Personagem interface{
 
 	AumentarAtk(int);
 
+	Inicializar(string);
+
+	ExibirStatus()
+
 };
 
 

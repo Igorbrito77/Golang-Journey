@@ -3,33 +3,23 @@ package main;
 import (
 	"fmt";
 	"jogo_batalha/personagem";
-	"jogo_batalha/barbaro";
+	"jogo_batalha/jogador";
+	"jogo_batalha/inimigo";
+	//"jogo_batalha/barbaro";
+	//"jogo_batalha/arqueiro";
 );
 
-type Arqueiro struct{
 
-	Atk int;
-	Defesa int;
-	Numero_flechas int;
-
-}
-
-func (arqueiro Arqueiro) Atacar(){
-
-	fmt.Println("Arqueiro atirou uma flecha. Dano: ", arqueiro.Atk);
-}
-
-
-func (arqueiro Arqueiro) AumentarAtk(incremento_atk int){
-
-	arqueiro.Atk += incremento_atk;
-}
-
+/*
 type Jogador struct{
 
 	nome string;
+	tipo_personagem string;
 	personagem personagem.Personagem;
 }
+*/
+
+// jogo de fases. com ataques aleatpórios. toda vez que passar de uma fase, criar uma fase nova trazendo um novo tipo de inimigo, e somando mais atk ao jogagor e ao inimigo seguinte;
 
 func main(){
 
@@ -40,35 +30,51 @@ func main(){
 
 	fmt.Scan(&escolha);
 
-	var jogador  personagem.Personagem;
+	//player := jogador.Jogador{};
 
+	var player * jogador.Jogador = new(jogador.Jogador);
+
+
+	
 	if(escolha == 1){
-		//jogador = new( personagem.Personagem); 
-		//(*jogador.Atk) = 95; // Defesa: 45, Numero_machados: 3};
-
-		jogador = &barbaro.Barbaro{Atk: 95, Defesa: 45, Numero_machados: 3};
+		player.Inicializar("Bárbaro");
 
 	}else{
-		jogador = Arqueiro{Atk: 70, Defesa: 35, Numero_flechas: 40};
+		player.Inicializar("Arqueiro");
 	}
 
 
-	fmt.Println(jogador);
-    fmt.Printf("jogador: %T\n", jogador)
+	fmt.Println(player);
+    fmt.Printf("Tipo do jogador: %T\n", player)
+ 
+	player.Atacar();
 
-
-	jogador.Atacar();
-
-	jogar(&jogador);
+	jogar(player);
 
 }
 
+// a interface já funciona como um ponteiro ???
 
-func jogar(jogador * personagem.Personagem){
+
+func faseAtacar(p personagem.Personagem){
+
+	p.Atacar();
+
+
+
+
+}
+
+func jogar(player * jogador.Jogador){
 
 
 
 	var comando int;
+
+	inimigo := inimigo.Inimigo{};
+
+	inimigo.Inicializar("aaa");
+	inimigo.ExibirStatus();
 
 	for{
 
@@ -82,14 +88,18 @@ func jogar(jogador * personagem.Personagem){
 
 		fmt.Scan(&comando);
 
+		switch(comando){
 
-		if(comando == 1){
+			case 1: 
+				player.AumentarAtk(10);
+			
+			default:
+				return;
 
-			(*jogador).AumentarAtk(10);
 		}
 
-
-
+		player.AddItens();
+		
 
 	}
 
