@@ -10,19 +10,9 @@ import (
 );
 
 
-/*
-type Jogador struct{
-
-	nome string;
-	tipo_personagem string;
-	personagem personagem.Personagem;
-}
-*/
-
 // jogo de fases. com ataques aleatpórios. toda vez que passar de uma fase, criar uma fase nova trazendo um novo tipo de inimigo, e somando mais atk ao jogagor e ao inimigo seguinte;
 
 func main(){
-
 
 	fmt.Println("Escolha uma classe de personagem: 1- Bárbaro, 2- Arqueiro");
 
@@ -37,18 +27,16 @@ func main(){
 
 	
 	if(escolha == 1){
-		player.Inicializar("Bárbaro");
+		player.Inicializar(personagem.Barbaro);
 
 	}else{
-		player.Inicializar("Arqueiro");
+		player.Inicializar(personagem.Arqueiro);
 	}
 
 
-	fmt.Println(player);
-    fmt.Printf("Tipo do jogador: %T\n", player)
+	//fmt.Println(player);
+  //  fmt.Printf("Tipo do jogador: %T\n", player)
  
-	player.Atacar();
-
 	jogar(player);
 
 }
@@ -60,21 +48,15 @@ func faseAtacar(p personagem.Personagem){
 
 	p.Atacar();
 
-
-
-
 }
 
 func jogar(player * jogador.Jogador){
-
-
 
 	var comando int;
 
 	inimigo := inimigo.Inimigo{};
 
-	inimigo.Inicializar("aaa");
-	inimigo.ExibirStatus();
+	inimigo.Inicializar(personagem.Arqueiro);
 
 	for{
 
@@ -98,8 +80,12 @@ func jogar(player * jogador.Jogador){
 
 		}
 
-		player.AddItens();
-		
+
+		faseAtacar(player);
+		faseAtacar(&inimigo);
+
+		player.AddItens("Bomba");
+		player.ExibirStatus();
 
 	}
 

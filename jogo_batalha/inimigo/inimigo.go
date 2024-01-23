@@ -15,7 +15,7 @@ type Inimigo struct{
 
 func (inimigo * Inimigo) Atacar(){
 
-	fmt.Println("Bárbaro atacou com o machado. Dano: ", inimigo.Atk);
+	fmt.Println("-> O inimigo", inimigo.TipoPersonagem, " atacou. Dano: ", inimigo.Atk);
 }
 
 func (inimigo * Inimigo) AumentarAtk(incremento_atk int){
@@ -37,8 +37,6 @@ func (inimigo * Inimigo) Inicializar(tipo_personagem string){
 		inimigo.Defesa = 35;
 	}
 
-
-	fmt.Println("inimigo ", inimigo.TipoPersonagem , " criado !");
 }
 
 func (inimigo * Inimigo) ExibirStatus(){
