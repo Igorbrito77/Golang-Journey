@@ -1,8 +1,9 @@
 package personagem;
 
 type Personagem interface{
-	Atacar();
+	Atacar( Personagem);
 	//caminhar();
+	LevarDano(int) int;
 
 	AumentarAtk(int);
 
@@ -15,7 +16,7 @@ type Personagem interface{
 
 func Destruir(p Personagem){
 
-	p.Atacar();
+	//p.Atacar();
 }
 
 func exibirStatus(){

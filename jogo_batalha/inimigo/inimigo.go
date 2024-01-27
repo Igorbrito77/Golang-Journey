@@ -1,21 +1,24 @@
 package inimigo;
 
 import(
-	"fmt"
+	"fmt";
+	"jogo_batalha/personagem";
 )
 
 type Inimigo struct{
 
 	Atk int;
 	Defesa int;
-
+	Vida int;
 	TipoPersonagem string;
 
 }
 
-func (inimigo * Inimigo) Atacar(){
+func (inimigo * Inimigo) Atacar(jogador personagem.Personagem){
 
-	fmt.Println("-> O inimigo", inimigo.TipoPersonagem, " atacou. Dano: ", inimigo.Atk);
+	danoCausado := jogador.LevarDano(inimigo.Atk);
+
+	fmt.Println("-> O inimigo", inimigo.TipoPersonagem, " te atacou. Dano sofrido: ", danoCausado);
 }
 
 func (inimigo * Inimigo) AumentarAtk(incremento_atk int){
@@ -32,9 +35,11 @@ func (inimigo * Inimigo) Inicializar(tipo_personagem string){
 	if(tipo_personagem == "Bárbaro"){
 		inimigo.Atk = 95;
 		inimigo.Defesa = 50;
+		inimigo.Vida = 100;
 	}else{
 		inimigo.Atk = 70;
 		inimigo.Defesa = 35;
+		inimigo.Vida = 100;
 	}
 
 }
@@ -46,5 +51,16 @@ func (inimigo * Inimigo) ExibirStatus(){
 	fmt.Println("Clase: ", inimigo.TipoPersonagem);
 	fmt.Println("Ataque: ", inimigo.Atk);
 	fmt.Println("Defesa: ", inimigo.Defesa);
+	fmt.Println("Vida: ", inimigo.Vida);
+
 }
 
+func (inimigo* Inimigo) LevarDano(atkPersonagem int) int{
+
+	dano := atkPersonagem - inimigo.Defesa;
+
+	inimigo.Vida -= dano;
+
+	return dano;
+
+}

@@ -9,7 +9,7 @@ type Jogador struct{
 
 	Atk int;
 	Defesa int;
-
+	Vida int;
 	TipoPersonagem string;
 
 	Itens [] string;
@@ -17,9 +17,11 @@ type Jogador struct{
 }
 
 
-func (jogador * Jogador) Atacar(){
+func (jogador * Jogador) Atacar(inimigo personagem.Personagem){
 
-	fmt.Println("-> Você (", jogador.TipoPersonagem, ") atacou . Dano: ", jogador.Atk);
+	danoCausado := inimigo.LevarDano(jogador.Atk);
+
+	fmt.Println("-> Você (", jogador.TipoPersonagem, ") atacou . Dano: ", danoCausado);
 }
 
 func (jogador * Jogador) AumentarAtk(incremento_atk int){
@@ -36,9 +38,11 @@ func (jogador * Jogador) Inicializar(tipo_personagem string){
 	if(tipo_personagem == personagem.Barbaro){
 		jogador.Atk = 95;
 		jogador.Defesa = 50;
+		jogador.Vida = 100;
 	}else{
 		jogador.Atk = 70;
 		jogador.Defesa = 35;
+		jogador.Vida = 100;
 	}
 
 }
@@ -50,11 +54,22 @@ func (jogador * Jogador) ExibirStatus(){
 	fmt.Println("Clase: ", jogador.TipoPersonagem);
 	fmt.Println("Ataque: ", jogador.Atk);
 	fmt.Println("Defesa: ", jogador.Defesa);
+	fmt.Println("Vida: ", jogador.Vida);
 	fmt.Println("Itens: ", jogador.Itens);
 }
 
 func (jogador * Jogador) AddItens(novo_item string){
 
 	jogador.Itens = append(jogador.Itens, novo_item);
+
+}
+
+func (jogador* Jogador) LevarDano(atkInimigo int) int{
+
+	dano := atkInimigo - jogador.Defesa;
+
+	jogador.Vida -= dano;
+
+	return dano;
 
 }

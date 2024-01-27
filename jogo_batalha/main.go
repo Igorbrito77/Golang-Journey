@@ -20,10 +20,7 @@ func main(){
 
 	fmt.Scan(&escolha);
 
-	//player := jogador.Jogador{};
-
 	var player * jogador.Jogador = new(jogador.Jogador);
-
 
 	
 	if(escolha == 1){
@@ -33,8 +30,6 @@ func main(){
 		player.Inicializar(personagem.Arqueiro);
 	}
 
-
-	//fmt.Println(player);
   //  fmt.Printf("Tipo do jogador: %T\n", player)
  
 	jogar(player);
@@ -43,12 +38,13 @@ func main(){
 
 // a interface já funciona como um ponteiro ???
 
-
+/*
 func faseAtacar(p personagem.Personagem){
 
-	p.Atacar();
+	//p.Atacar();
 
 }
+*/
 
 func jogar(player * jogador.Jogador){
 
@@ -58,13 +54,19 @@ func jogar(player * jogador.Jogador){
 
 	inimigo.Inicializar(personagem.Arqueiro);
 
-	for{
+	fmt.Println("\n\n Um inimigo ", inimigo.TipoPersonagem, " apareceu. Lute ou morra!");
+
+	inimigo.ExibirStatus();
+
+
+	for inimigo.Vida >= 0 && player.Vida >= 0 {
+
+		// loop de batalha
 
 		fmt.Println("\n\n____________________________________________________________________________________________________________________________________________\n")
-		fmt.Println(" 								**** MENU PRINCIPAL **** \n")
-		fmt.Println("\n\n Você está andando pela floresta e escuta um som atrás de uma árvore. O que você faz?");
-		fmt.Println("1- Conferir o que há atrás da árvore");
-		fmt.Println("2- Ignorar e seguir o seu caminho");
+		fmt.Println(" 								**** LUTE OU MORRA! **** \n")
+		fmt.Println("1- Atacar");
+		fmt.Println("2- Procurar item especial");
 		fmt.Println("0- Sair do jogo");
 		fmt.Println(" 								Escolha uma opção: \n")
 
@@ -73,21 +75,26 @@ func jogar(player * jogador.Jogador){
 		switch(comando){
 
 			case 1: 
-				player.AumentarAtk(10);
+				player.Atacar(&inimigo);
+			case 2: 
+				player.AddItens("Bomba");
+				//player.AumentarAtk(10);
 			
 			default:
 				return;
 
 		}
 
-
-		faseAtacar(player);
-		faseAtacar(&inimigo);
-
-		player.AddItens("Bomba");
+		inimigo.Atacar(player);
+		
+		inimigo.ExibirStatus();
 		player.ExibirStatus();
 
 	}
 
-
+	if(inimigo.Vida <= 0){
+		fmt.Println("Vitória! Você derrotou o inimigo!");
+	}else{
+		fmt.Println("Fim de Jogo! Você foi derrotado!");
+	}
 }
