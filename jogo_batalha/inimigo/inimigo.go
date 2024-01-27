@@ -28,21 +28,7 @@ func (inimigo * Inimigo) AumentarAtk(incremento_atk int){
 	fmt.Println("atk agora == ", inimigo.Atk );
 }
 
-func (inimigo * Inimigo) Inicializar(tipo_personagem string){
 
-	inimigo.TipoPersonagem = tipo_personagem;
-
-	if(tipo_personagem == "Bárbaro"){
-		inimigo.Atk = 95;
-		inimigo.Defesa = 50;
-		inimigo.Vida = 100;
-	}else{
-		inimigo.Atk = 70;
-		inimigo.Defesa = 35;
-		inimigo.Vida = 100;
-	}
-
-}
 
 func (inimigo * Inimigo) ExibirStatus(){
 

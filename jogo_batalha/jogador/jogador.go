@@ -21,6 +21,7 @@ func (jogador * Jogador) Atacar(inimigo personagem.Personagem){
 
 	danoCausado := inimigo.LevarDano(jogador.Atk);
 
+	fmt.Println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n____________________________________________________________________________________________________________________________________________\n")
 	fmt.Println("-> Você (", jogador.TipoPersonagem, ") atacou . Dano: ", danoCausado);
 }
 

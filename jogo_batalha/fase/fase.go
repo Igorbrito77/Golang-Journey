@@ -17,26 +17,39 @@ type Fase struct{
 }
 
 
+func ImprimirEspaco(){
+	fmt.Println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
+}
+
+func ExibirStatusDuelo(player * jogador.Jogador, inimigo inimigo.Inimigo){
+
+	inimigo.ExibirStatus();
+	player.ExibirStatus();
+}
+
 func (fase * Fase ) IniciarFase( player* jogador.Jogador) int{
 
 	var comando int;
 
+	ImprimirEspaco();
+
+	fmt.Println("-----------------------------------------------------------------------------------------------------\n")
+	fmt.Println(" ------------------------------------------ FASE ", fase.Numero, " ---------------------------------\n")
+	fmt.Println("-----------------------------------------------------------------------------------------------------\n")
 
 	fmt.Println("\n\n Um inimigo ", fase.Inimigo.TipoPersonagem, " apareceu. Lute ou morra!");
 
-	fase.Inimigo.ExibirStatus();
-	player.ExibirStatus();
 
 	for fase.Inimigo.Vida >= 0 && player.Vida >= 0 {
+		
+
+		ExibirStatusDuelo(player, fase.Inimigo);
 
 		// loop de batalha
 
 		fmt.Println("\n\n____________________________________________________________________________________________________________________________________________\n")
 		fmt.Println(" 								**** FASE ", fase.Numero, "! LUTE OU MORRA! **** \n")
-		fmt.Println("1- Atacar");
-		fmt.Println("2- Procurar item especial");
-		fmt.Println("0- Sair do jogo");
-		fmt.Println(" 								Escolha uma opção: \n")
+		fmt.Println(" 					1- Atacar | 2- Procurar item especial | 0- Sair do jogo  \n");
 
 		fmt.Scan(&comando);
 
@@ -52,24 +65,47 @@ func (fase * Fase ) IniciarFase( player* jogador.Jogador) int{
 				return -1;
 
 		}
+	
+		if(fase.Inimigo.Vida <= 0){
+			break;
+		}
 
 		fase.Inimigo.Atacar(player);
-		
-		fase.Inimigo.ExibirStatus();
-		player.ExibirStatus();
+
+		/*if(player.Vida <= 0){
+			break;
+		}*/
+
+		fmt.Println("Digite algo para continuar a batalha\n");
+		fmt.Scan(&comando);
+
+		ImprimirEspaco();
 
 	}
 
+
+	resultado := 1;
+
+	//ImprimirEspaco();
+
+	ExibirStatusDuelo(player, fase.Inimigo);
+
+
 	if(fase.Inimigo.Vida <= 0){
-		fmt.Println("Vitória! Você derrotou o inimigo!");
+		fmt.Println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n               Vitória! Você derrotou o inimigo!								");
 
 		player.AumentarAtk(25);
 
-		return 1;
 	}else{
-		fmt.Println("Fim de Jogo! Você foi derrotado!");
-		return -1;
+		fmt.Println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n								Fim de Jogo! Você foi derrotado!");
+		resultado = -1;
 	}
-	
 
+
+
+	fmt.Println("Digite algo para seguir para a próxima fase\n");
+	fmt.Scan(&comando);
+
+	return resultado;
+	
 }

@@ -18,16 +18,11 @@ import (
 
 func criarLivro() livro.Livro{
 
-	inimigoFase1 := inimigo.Inimigo{};
-
-	inimigoFase1.Inicializar(personagem.Arqueiro);
+	inimigoFase1 := inimigo.Inimigo{TipoPersonagem: personagem.Arqueiro, Atk: 70, Defesa: 50, Vida: 100};
 
 	fase1:= fase.Fase{ Inimigo : inimigoFase1, Numero: 1};
 
-
-	inimigoFase2 := inimigo.Inimigo{};
-
-	inimigoFase2.Inicializar(personagem.Barbaro);
+	inimigoFase2 := inimigo.Inimigo{TipoPersonagem: personagem.Barbaro, Atk: 70, Defesa: 50, Vida: 100};
 
 	fase2:= fase.Fase{ Inimigo : inimigoFase2, Numero: 2};
 
