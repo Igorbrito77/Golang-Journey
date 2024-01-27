@@ -1,6 +1,7 @@
 package livro;
 
 import(
+	"fmt",
 	"jogo_batalha/jogador";
 	"jogo_batalha/fase";
 )
@@ -26,6 +27,8 @@ func (livro * Livro ) IniciarHistoria(player* jogador.Jogador){
 		}
 
 	}
+
+	fmt.Println("                          PARABÉNS: JOGO CONCLUÍDO !!	");
 
 }
  
