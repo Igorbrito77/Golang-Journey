@@ -51,10 +51,18 @@ func (jogador * Jogador) ExibirStatus(){
 
 	fmt.Println("\n\n____________________________________________________________________________________________________________________________________________\n")
 	fmt.Println(" 								**** STATUS DO JOGADOR **** \n")
-	fmt.Println("Clase: ", jogador.TipoPersonagem);
+	fmt.Println("Classe: ", jogador.TipoPersonagem);
+
+	var barraVida = "";
+
+	for i := 0; i < jogador.Vida; i++{
+		barraVida += "|";
+	} 
+
+	
+	fmt.Println("Vida: ", barraVida, " (", jogador.Vida, ")");
 	fmt.Println("Ataque: ", jogador.Atk);
 	fmt.Println("Defesa: ", jogador.Defesa);
-	fmt.Println("Vida: ", jogador.Vida);
 	fmt.Println("Itens: ", jogador.Itens);
 }
 
