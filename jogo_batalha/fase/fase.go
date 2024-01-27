@@ -2,7 +2,7 @@ package fase;
 
 import(
 	"fmt";
-	"jogo_batalha/personagem";
+	//"jogo_batalha/personagem";
 	"jogo_batalha/jogador";
 	"jogo_batalha/inimigo";
 
@@ -11,27 +11,28 @@ import(
 
 type Fase struct{
 
-	inimigo inimigo.Inimigo;
-	numero int;
+	Inimigo inimigo.Inimigo;
+	Numero int;
 
 }
 
-func (fase * Fase ) iniciarFase( player* jogador.Jogador) int{
+
+func (fase * Fase ) IniciarFase( player* jogador.Jogador) int{
 
 	var comando int;
 
 
-	fmt.Println("\n\n Um inimigo ", fase.inimigo.TipoPersonagem, " apareceu. Lute ou morra!");
+	fmt.Println("\n\n Um inimigo ", fase.Inimigo.TipoPersonagem, " apareceu. Lute ou morra!");
 
-	fase.inimigo.ExibirStatus();
+	fase.Inimigo.ExibirStatus();
 	player.ExibirStatus();
 
-	for fase.inimigo.Vida >= 0 && player.Vida >= 0 {
+	for fase.Inimigo.Vida >= 0 && player.Vida >= 0 {
 
 		// loop de batalha
 
 		fmt.Println("\n\n____________________________________________________________________________________________________________________________________________\n")
-		fmt.Println(" 								**** FASE ", fase.numero, "! LUTE OU MORRA! **** \n")
+		fmt.Println(" 								**** FASE ", fase.Numero, "! LUTE OU MORRA! **** \n")
 		fmt.Println("1- Atacar");
 		fmt.Println("2- Procurar item especial");
 		fmt.Println("0- Sair do jogo");
@@ -42,7 +43,7 @@ func (fase * Fase ) iniciarFase( player* jogador.Jogador) int{
 		switch(comando){
 
 			case 1: 
-				player.Atacar(&fase.inimigo);
+				player.Atacar(&fase.Inimigo);
 			case 2: 
 				player.AddItens("Bomba");
 				//player.AumentarAtk(10);
@@ -52,14 +53,14 @@ func (fase * Fase ) iniciarFase( player* jogador.Jogador) int{
 
 		}
 
-		fase.inimigo.Atacar(player);
+		fase.Inimigo.Atacar(player);
 		
-		fase.inimigo.ExibirStatus();
+		fase.Inimigo.ExibirStatus();
 		player.ExibirStatus();
 
 	}
 
-	if(fase.inimigo.Vida <= 0){
+	if(fase.Inimigo.Vida <= 0){
 		fmt.Println("Vitória! Você derrotou o inimigo!");
 
 		player.AumentarAtk(25);

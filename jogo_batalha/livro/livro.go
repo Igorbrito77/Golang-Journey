@@ -1,29 +1,28 @@
-package fase;
+package livro;
 
 import(
-	"fmt";
 	"jogo_batalha/jogador";
+	"jogo_batalha/fase";
 )
 
 
 
 type Livro struct{
 
-	fases [] Fase;
+	Fases [] fase.Fase;
 
 }
 
-func (livro * Livro ) iniciarHistoria(player* jogador.Jogador){
+func (livro * Livro ) IniciarHistoria(player* jogador.Jogador){
 
 
-	resultado:= livro.fases[0].iniciarFase(player);
+	resultado:= livro.Fases[0].IniciarFase(player);
 
 	if(resultado == -1){
 		return;
 	}
 
-	resultado= livro.fases[1].iniciarFase(player);
-
+	resultado= livro.Fases[1].IniciarFase(player);
 
 }
  
