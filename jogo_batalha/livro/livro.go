@@ -15,14 +15,17 @@ type Livro struct{
 
 func (livro * Livro ) IniciarHistoria(player* jogador.Jogador){
 
+	var resultado int;
 
-	resultado:= livro.Fases[0].IniciarFase(player);
+	for _, fase:= range livro.Fases {
 
-	if(resultado == -1){
-		return;
+		resultado = fase.IniciarFase(player);
+
+		if(resultado == -1){
+			return;
+		}
+
 	}
-
-	resultado= livro.Fases[1].IniciarFase(player);
 
 }
  
